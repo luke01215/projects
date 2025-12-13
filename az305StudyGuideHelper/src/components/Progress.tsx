@@ -18,6 +18,10 @@ const Progress = () => {
         setProgress(JSON.parse(saved));
       } catch (error) {
         console.error('Failed to parse progress:', error);
+      }
+    }
+  }, []);
+
   const resetProgress = () => {
     if (window.confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
       localStorage.removeItem('studyProgress');
@@ -27,11 +31,6 @@ const Progress = () => {
         quizzesTaken: 0,
         correctAnswers: 0,
         totalQuestions: 0,
-        lastStudyDate: '',
-        domainScores: {}
-      });
-    }
-  };    totalQuestions: 0,
         lastStudyDate: '',
         domainScores: {}
       });

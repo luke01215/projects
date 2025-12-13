@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ-305 Study Guide Helper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AZ-305: Designing Microsoft Azure Infrastructure Solutions</h1>
+        <p>Study Guide Helper</p>
+    </header>
+
+    <nav>
+        <button class="tab-button active" data-tab="overview">Overview</button>
+        <button class="tab-button" data-tab="identity">Identity & Governance</button>
+        <button class="tab-button" data-tab="storage">Data Storage</button>
+        <button class="tab-button" data-tab="compute">Business Continuity</button>
+        <button class="tab-button" data-tab="infrastructure">Infrastructure</button>
+    </nav>
+
+    <main>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+            <span class="progress-text" id="progressText">0% Complete</span>
+        </div>
+
+        <div id="overview" class="tab-content active">
+            <h2>Exam Overview</h2>
+            <div class="card">
+                <h3>Exam Structure</h3>
+                <ul>
+                    <li>Design Identity, Governance, and Monitoring Solutions (25-30%)</li>
+                    <li>Design Data Storage Solutions (25-30%)</li>
+                    <li>Design Business Continuity Solutions (10-15%)</li>
+                    <li>Design Infrastructure Solutions (25-30%)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Key Resources</h3>
+                <ul>
+                    <li><a href="https://learn.microsoft.com/en-us/credentials/certifications/azure-solutions-architect/" target="_blank">Official Exam Page</a></li>
+                    <li><a href="https://learn.microsoft.com/en-us/azure/" target="_blank">Azure Documentation</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="identity" class="tab-content">
+            <h2>Design Identity, Governance, and Monitoring Solutions</h2>
+            <div class="topic-section">
+                <h3>Identity Management</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Azure Active Directory (Entra ID) - Authentication & Authorization</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Conditional Access Policies</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Multi-Factor Authentication (MFA)</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Privileged Identity Management (PIM)</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Managed Identities</span>
+                </label>
+            </div>
+            <div class="topic-section">
+                <h3>Governance</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Azure Policy</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Resource Groups and Management Groups</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Role-Based Access Control (RBAC)</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Azure Blueprints</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Cost Management and Budgets</span>
+                </label>
+            </div>
+            <div class="topic-section">
+                <h3>Monitoring</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Azure Monitor</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Log Analytics</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Application Insights</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="identity">
+                    <span>Alerts and Action Groups</span>
+                </label>
+            </div>
+        </div>
+
+        <div id="storage" class="tab-content">
+            <h2>Design Data Storage Solutions</h2>
+            <div class="topic-section">
+                <h3>Storage Accounts</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Blob Storage (Hot, Cool, Archive tiers)</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Azure Files and File Sync</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Storage Account Replication (LRS, GRS, RA-GRS, ZRS)</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Storage Security (Encryption, SAS, Firewall)</span>
+                </label>
+            </div>
+            <div class="topic-section">
+                <h3>Database Solutions</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Azure SQL Database and SQL Managed Instance</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Cosmos DB (consistency levels, partitioning)</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Azure Database for PostgreSQL/MySQL</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Database Scalability and High Availability</span>
+                </label>
+            </div>
+            <div class="topic-section">
+                <h3>Data Integration</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Azure Data Factory</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Azure Synapse Analytics</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="storage">
+                    <span>Data Lake Storage Gen2</span>
+                </label>
+            </div>
+        </div>
+
+        <div id="compute" class="tab-content">
+            <h2>Design Business Continuity Solutions</h2>
+            <div class="topic-section">
+                <h3>High Availability</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>Availability Sets and Availability Zones</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>Load Balancer and Application Gateway</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>Traffic Manager and Front Door</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>SLA Calculations</span>
+                </label>
+            </div>
+            <div class="topic-section">
+                <h3>Backup and Recovery</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>Azure Backup</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>Azure Site Recovery</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>Backup Policies and Retention</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="compute">
+                    <span>Disaster Recovery Planning (RPO/RTO)</span>
+                </label>
+            </div>
+        </div>
+
+        <div id="infrastructure" class="tab-content">
+            <h2>Design Infrastructure Solutions</h2>
+            <div class="topic-section">
+                <h3>Compute Solutions</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Virtual Machines and VM Scale Sets</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Azure App Service and App Service Plans</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Azure Kubernetes Service (AKS)</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Azure Container Instances</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Azure Functions and Logic Apps</span>
+                </label>
+            </div>
+            <div class="topic-section">
+                <h3>Networking</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Virtual Networks (VNet) and Subnets</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>VNet Peering and VPN Gateway</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>ExpressRoute</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Network Security Groups (NSG) and Application Security Groups</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Azure Firewall and DDoS Protection</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Private Link and Service Endpoints</span>
+                </label>
+            </div>
+            <div class="topic-section">
+                <h3>Migration</h3>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Azure Migrate</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Database Migration Service</span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" data-topic="infrastructure">
+                    <span>Azure Import/Export</span>
+                </label>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Good luck with your AZ-305 exam! Remember to practice with hands-on labs.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
