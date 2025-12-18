@@ -1,0 +1,41 @@
+# Email Scanner Configuration
+# Copy this file to config.yaml and update with your settings
+
+# Database configuration
+database:
+  url: "sqlite:///data/email_scanner.db"  # SQLite database path
+  # For PostgreSQL: "postgresql://user:password@localhost/email_scanner"
+
+# Email account settings
+email:
+  server: "imap.gmail.com"  # IMAP server address
+  port: 993                  # IMAP SSL port
+  address: "your.email@gmail.com"  # Your email address
+  password: "your_app_password"    # Email password or app-specific password
+  
+  # Common IMAP servers:
+  # Gmail: imap.gmail.com:993
+  # Outlook: outlook.office365.com:993
+  # Yahoo: imap.mail.yahoo.com:993
+  # iCloud: imap.mail.me.com:993
+
+# Ollama AI settings
+ollama:
+  base_url: "http://localhost:11434"  # Ollama server URL
+  model: "llama3.2"                   # Model to use (llama3.2, mistral, llama2, etc.)
+
+# Email scanner settings
+scanner:
+  limit: 50          # Maximum emails to process per scan
+  folder: "INBOX"    # Email folder to scan
+
+# Automatic deletion settings (use with caution!)
+auto_delete:
+  enabled: false              # Enable automatic deletion
+  confidence_threshold: 0.95  # Minimum confidence score for auto-delete (0.0 to 1.0)
+  min_approvals: 10           # Minimum number of manual approvals before enabling auto-delete
+
+# Web interface settings
+web:
+  host: "0.0.0.0"  # Web server host (0.0.0.0 for all interfaces)
+  port: 8000       # Web server port
