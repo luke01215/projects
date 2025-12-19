@@ -134,8 +134,8 @@ class EmailClient:
             Dictionary with email data (including UID) or None if failed
         """
         try:
-            # Fetch email with UID
-            status, msg_data = self.connection.fetch(email_id, '(UID RFC822)')
+            # Fetch email with UID (using PEEK to avoid marking as read)
+            status, msg_data = self.connection.fetch(email_id, '(UID BODY.PEEK[])')
             if status != 'OK':
                 return None
             
