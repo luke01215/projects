@@ -203,13 +203,26 @@ async def get_pending_emails(
     limit: int = 50,
     skip: int = 0,
     search: Optional[str] = None,
+    unviewed_only: bool = False,
     db: Session = Depends(get_db)
 ):
-    """Get all emails pending review with optional search filter"""
+    """
+    Get all emails pending review with optional filters
+    
+    Args:
+        limit: Maximum number of emails to return
+        skip: Number of emails to skip (for pagination)
+        search: Optional search term to filter by sender, subject, or body
+        unviewed_only: If True, only return emails that haven't been viewed yet
+    """
     try:
         query = db.query(Email, Analysis).join(Analysis).filter(
             Analysis.status == 'pending_review'
         )
+        
+        # Filter by viewed status
+        if unviewed_only:
+            query = query.filter(Analysis.viewed_at.is_(None))
         
         # Apply search filter if provided
         if search:
@@ -335,6 +348,42 @@ async def make_decision(
             "action_taken": decision.action_taken
         }
         
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/emails/{email_id}/viewed")
+async def mark_email_viewed(email_id: int, db: Session = Depends(get_db)):
+    """Mark an email as viewed (sets viewed_at timestamp if not already set)"""
+    try:
+        # Get the email and its analysis
+        email = db.query(Email).filter(Email.id == email_id).first()
+        if not email:
+            raise HTTPException(status_code=404, detail="Email not found")
+        
+        analysis = db.query(Analysis).filter(Analysis.email_id == email_id).first()
+        if not analysis:
+            raise HTTPException(status_code=404, detail="Analysis not found")
+        
+        # Only set viewed_at if it hasn't been set yet
+        if analysis.viewed_at is None:
+            analysis.viewed_at = datetime.now(UTC)
+            db.commit()
+            return {
+                "message": "Email marked as viewed",
+                "email_id": email_id,
+                "viewed_at": analysis.viewed_at
+            }
+        else:
+            return {
+                "message": "Email was already viewed",
+                "email_id": email_id,
+                "viewed_at": analysis.viewed_at
+            }
+    
     except HTTPException:
         raise
     except Exception as e:

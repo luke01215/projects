@@ -65,6 +65,7 @@ class Analysis(Base):
     
     # Timestamps
     analyzed_at = Column(DateTime, default=datetime.utcnow, index=True)
+    viewed_at = Column(DateTime, nullable=True, index=True)  # When email was first viewed by user
     
     # Relationships
     email = relationship("Email", back_populates="analysis")

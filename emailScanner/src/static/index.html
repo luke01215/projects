@@ -95,6 +95,9 @@
                            style="width: 400px; padding: 8px; font-size: 14px; border: 1px solid #ddd; border-radius: 4px;">
                     <button onclick="searchEmails()" style="padding: 8px 16px; margin-left: 8px; cursor: pointer;">Search</button>
                     <button onclick="clearSearch()" style="padding: 8px 16px; margin-left: 4px; cursor: pointer;">Clear</button>
+                    <label style="margin-left: 20px;">
+                        <input type="checkbox" id="unviewed-only" onchange="loadEmails()"> Show only unviewed emails
+                    </label>
                 </div>
                 <div id="email-container">
                     <div class="loading">Loading emails...</div>
@@ -592,10 +595,17 @@
         
         async function loadEmails(searchTerm = null) {
             try {
-                let url = '/api/emails/pending';
+                const unviewedOnly = document.getElementById('unviewed-only')?.checked || false;
+                
+                let url = '/api/emails/pending?';
+                const params = [];
                 if (searchTerm) {
-                    url += '?search=' + encodeURIComponent(searchTerm);
+                    params.push('search=' + encodeURIComponent(searchTerm));
                 }
+                if (unviewedOnly) {
+                    params.push('unviewed_only=true');
+                }
+                url += params.join('&');
                 
                 const response = await fetch(url);
                 if (!response.ok) throw new Error('Email request failed');
@@ -604,9 +614,9 @@
                 const container = document.getElementById('email-container');
                 
                 if (emails.length === 0) {
-                    const message = searchTerm 
+                    let message = searchTerm 
                         ? 'No emails found matching "' + escapeHtml(searchTerm) + '"'
-                        : 'No emails pending review';
+                        : (unviewedOnly ? 'No unviewed emails pending review' : 'No emails pending review');
                     container.innerHTML = '<div class="loading">' + message + '</div>';
                     return;
                 }
@@ -658,6 +668,17 @@
                 const response = await fetch('/api/emails/' + emailId);
                 if (!response.ok) throw new Error('Failed to load email details');
                 const email = await response.json();
+                
+                // Mark email as viewed
+                try {
+                    await fetch('/api/emails/' + emailId + '/viewed', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                } catch (viewError) {
+                    console.warn('Failed to mark email as viewed:', viewError);
+                    // Don't fail the whole operation if marking as viewed fails
+                }
                 
                 document.getElementById('modal-content').innerHTML = 
                     '<h2>Email Details</h2>' +
